@@ -1,0 +1,67 @@
+<!--
+Copyright 2019 Eduardo E. Betanzos Morales
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cinema Family</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <!-- https://github.com/tzi/chewing-grid.css/ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chewing-grid-atomic.min.css}"/>
+    <!-- https://github.com/necolas/normalize.css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize-8.0.1.css}"/>
+</head>
+<body>
+    <header>
+        <a th:href="@{/}">
+            <img class="logo" th:src="@{/img/popcorn.svg}" />
+            <h1 class="app-name">Cinema Family</h1>
+        </a>
+    </header>
+
+    <section>
+        <div class="video-container">
+            <video id='player' controls playsinline>
+                <source th:src="@{'/file/'+${video_id}}" type="video/mp4" >
+                <track kind="captions" th:each="sub : ${subtitles}" th:label="${sub.languageName}" th:srclang="${sub.languageId}" th:src="@{'/subtitle/'+${sub.id}}" default>
+            </video>
+
+            <p class="video-title" th:if="${video_title} != null" th:text="${video_title}"></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2019 Eduardo Betanzos</p>
+    </footer>
+
+    <script>
+        let player = document.getElementById("player");
+
+        window.addEventListener("orientationchange", (event) => {
+            if (screen.orientation.type.startsWith('landscape')) {
+            if (!document.fullScreen) {
+                player.requestFullscreen();
+            } else {
+                document.cancelFullscreen();
+            }
+        }
+        }, false);
+    </script>
+</body>
+</html>

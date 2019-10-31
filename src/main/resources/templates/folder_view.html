@@ -1,0 +1,58 @@
+<!--
+Copyright 2019 Eduardo E. Betanzos Morales
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cinema Family</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <!-- https://github.com/tzi/chewing-grid.css/ -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chewing-grid-atomic.min.css}"/>
+    <!-- https://github.com/necolas/normalize.css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize-8.0.1.css}"/>
+</head>
+<body>
+    <header>
+        <a th:href="@{/}">
+            <img class="logo" th:src="@{/img/popcorn.svg}" />
+            <h1 class="app-name">Cinema Family</h1>
+        </a>
+    </header>
+
+    <section>
+        <p class="path" th:if="${header_text} != null" th:text="${header_text}"></p>
+        <ul class="chew-row">
+            <li class="chew-cell card" th:each="item : ${elements}">
+                <a class="chew-card card-link" th:href="@{${item.class.name == 'com.betanzos.cinemafamily.domain.Folder' ? '/folder/' : '/video/'}+${item.id}}">
+                    <div class="card-header">
+                        <img th:src="@{${item.class.name == 'com.betanzos.cinemafamily.domain.Folder' ? '/img/folder-wide.png' : '/img/video-wide.png'}}" alt="">
+                    </div>
+                    <div class="card-title">
+                        <span th:text="${item.name}"></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2019 Eduardo Betanzos</p>
+    </footer>
+</body>
+</html>

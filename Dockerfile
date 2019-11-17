@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk13-openj9:x86_64-alpine-jre-13.0.1_9_openj9-0.17.0
+FROM adoptopenjdk:11-jre-openj9
 
 LABEL mantainer="Eduardo Betanzos <ebetanzos@hotmail.es>"
 

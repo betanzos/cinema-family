@@ -26,7 +26,7 @@ In order to run the app must use the following:
 > java -jar cinema-family-<version>.jar --root.dir="/path/to/videos/directory"
 ```
 
-This command run an Apache Tomcat server on port 8080 wich can be changed using the parameter
+This command run an Apache Tomcat server on port 8080 which can be changed using the parameter
 `--server.port` (e.g. `--server.port=80`).
 
 Parameter `--root.dir` allow to set the video root directory to scan. Default value is
@@ -38,7 +38,7 @@ You can make your own docker image using `docker-build.sh` script. Once you have
 `docker-run.sh` script for run one instance of it.
 
 Note that `docker-run.sh` use the following parameter in order to bind a local directory with one inside 
-the continer: `-v /home/user/Videos:/mnt/videos`. So, you need to edit this parameter and specify you videos
+the container: `-v /home/user/Videos:/mnt/videos`. So, you need to edit this parameter and specify you videos
 directory (e.g. `-v /home/juan/MyVideos:/mnt/videos`). 
 
 ### From Docker Hub
